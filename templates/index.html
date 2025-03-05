@@ -3,19 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CSV 數據轉換工具</title>
+    <title>樹酯包 CSV 數據轉換工具</title>
+    <style>
+        /* 設定整體頁面樣式 */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            padding: 20px;
+        }
+
+        /* 容器卡片 */
+        .container {
+            background: white;
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* 標題樣式 */
+        h2 {
+            color: #333;
+        }
+
+        /* 按鈕樣式 */
+        button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin-top: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        /* 上傳檔案區域 */
+        input[type="file"] {
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 5px;
+            width: 100%;
+            background: white;
+            cursor: pointer;
+        }
+
+        /* 下載連結區塊 */
+        .download-links {
+            margin-top: 20px;
+        }
+
+        .download-links a {
+            display: block;
+            background-color: #28a745;
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        .download-links a:hover {
+            background-color: #218838;
+        }
+
+        /* 響應式設計 */
+        @media (max-width: 600px) {
+            .container {
+                width: 90%;
+            }
+        }
+    </style>
 </head>
 <body>
-    <h2>CSV 數據轉換工具</h2>
-    <form action="/" method="post" enctype="multipart/form-data">
-        <input type="file" name="file" accept=".csv" required>
-        <button type="submit">上傳並轉換</button>
-    </form>
+    <div class="container">
+        <h2>樹酯包 CSV 數據轉換工具</h2>
+        <form action="/" method="post" enctype="multipart/form-data">
+            <input type="file" name="file" accept=".csv" required>
+            <button type="submit">📤 上傳並轉換</button>
+        </form>
 
-    {% if files_ready %}
-    <h3>轉換完成！請下載結果：</h3>
-    <a href="{{ url_for('download', filename='output_C.csv') }}" download>下載 C 類別 CSV</a><br>
-    <a href="{{ url_for('download', filename='output_A.csv') }}" download>下載 A 類別 CSV</a>
-    {% endif %}
+        {% if files_ready %}
+        <div class="download-links">
+            <h3>✅ 轉換完成！請下載結果：</h3>
+            <a href="{{ url_for('download', filename='output_C.csv') }}" download>⬇️ 下載 Cathod 陰極檢測數據 CSV</a>
+            <a href="{{ url_for('download', filename='output_A.csv') }}" download>⬇️ 下載 Anode 陽極檢測數據 CSV</a>
+        </div>
+        {% endif %}
+    </div>
 </body>
 </html>
